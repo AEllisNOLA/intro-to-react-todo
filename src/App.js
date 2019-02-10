@@ -16,12 +16,19 @@ class App extends Component {
     }
   }
 
+  toggleComplete(index) {
+    const todosArrayCopy = this.state.todosArray.slice();
+    const task = todosArrayCopy[index];
+    task.isCompleted = task.isCompleted ? false : true;
+    this.setState ( {todosArrayCopy: todosArrayCopy} )
+  }
+
   render() {
     return (
       <div className="App">
         <ul>
           {this.state.todosArray.map( (task, index) => 
-          <ToDoItem key={index} description={task.description} isCompleted={task.isCompleted}/>)}
+          <ToDoItem key={index} description={task.description} isCompleted={task.isCompleted} toggleComplete={ () => this.toggleComplete(index)}/>)}
         </ul>
       </div>
     );
