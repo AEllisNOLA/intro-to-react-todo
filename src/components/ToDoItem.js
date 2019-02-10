@@ -4,7 +4,10 @@ class ToDoItem extends Component {
     render() {
         return (
             <div>
-                <li>A ToDoItem will go here.</li>
+                <li>
+                    <input type="checkbox" checked={this.props.isCompleted}/>    
+                    <span>{this.props.description}</span>
+                </li>
             </div>
         )
     }
