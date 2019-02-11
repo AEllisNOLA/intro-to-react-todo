@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import ToDoItem from './components/ToDoItem';
 
 class App extends Component {
@@ -17,11 +16,14 @@ class App extends Component {
     };
   }
 
-  toggleComplete(index) {
-    const todosArrayCopy = this.state.todosArray.slice();
-    const task = todosArrayCopy[index];
-    task.isCompleted = task.isCompleted ? false : true;
-    this.setState ( {todosArrayCopy: todosArrayCopy} )
+  deleteToDo(index) {
+    const arrayCopy = this.state.todosArray.slice();
+    const filteredArray = arrayCopy.filter((task, ind) => ind !== index);
+    this.setState({ todosArray: filteredArray })
+  }
+
+  handleChange(event) {
+    this.setState({newToDoDescription: event.target.value})
   }
 
   handleSubmit(event) {
@@ -32,8 +34,12 @@ class App extends Component {
 
   }
 
-  handleChange(event) {
-    this.setState({newToDoDescription: event.target.value})
+
+  toggleComplete(index) {
+    const arrayCopy = this.state.todosArray.slice();
+    const task = arrayCopy[index];
+    task.isCompleted = task.isCompleted ? false : true;
+    this.setState ( {arrayCopy: arrayCopy} )
   }
 
   render() {
@@ -41,7 +47,12 @@ class App extends Component {
       <div className="App">
         <ul>
           {this.state.todosArray.map( (task, index) => 
-          <ToDoItem key={index} description={task.description} isCompleted={task.isCompleted} toggleComplete={ () => this.toggleComplete(index)}/>)}
+          <ToDoItem 
+          key={index} 
+          description={task.description} 
+          isCompleted={task.isCompleted} 
+          toggleComplete={ () => this.toggleComplete(index)}
+          deleteToDo={() => this.deleteToDo(index)}/>)}
         </ul>
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <input type="text" value={this.state.newToDoDescription} onChange={(event) => this.handleChange(event)}/>

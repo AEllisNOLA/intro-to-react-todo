@@ -25,3 +25,9 @@ PUSH!
 - Added text/submit form.
 - Created handleSubmit() and handleChange()
 - Added ability to submit new ToDos.
+
+
+## Assignment 2752
+- Added deleteToDo() method.
+- Passed deleteToDo as <ToDoList /> prop
+- Added delete button to <ToDoList /> component with event listener calling deleteToDo()
