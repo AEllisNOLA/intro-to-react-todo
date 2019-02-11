@@ -12,8 +12,9 @@ class App extends Component {
         { description: "Walk the cat", isCompleted: true },
         { description: "Throw the dishes away", isCompleted: false},
         { description: "Buy new dishes", isCompleted: false}
-      ]
-    }
+      ],
+      newToDoDescription: ''
+    };
   }
 
   toggleComplete(index) {
@@ -23,6 +24,18 @@ class App extends Component {
     this.setState ( {todosArrayCopy: todosArrayCopy} )
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    if(!this.state.newToDoDescription) {return}
+    const newToDo = { description: this.state.newToDoDescription, isCompleted: false};
+    this.setState({todosArray: [...this.state.todosArray, newToDo], newToDoDescription: ''})
+
+  }
+
+  handleChange(event) {
+    this.setState({newToDoDescription: event.target.value})
+  }
+
   render() {
     return (
       <div className="App">
@@ -30,6 +43,10 @@ class App extends Component {
           {this.state.todosArray.map( (task, index) => 
           <ToDoItem key={index} description={task.description} isCompleted={task.isCompleted} toggleComplete={ () => this.toggleComplete(index)}/>)}
         </ul>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
+          <input type="text" value={this.state.newToDoDescription} onChange={(event) => this.handleChange(event)}/>
+          <input type="submit" />
+        </form>
       </div>
     );
   }

@@ -12,7 +12,7 @@ Completed.
 - Added props to that single <ToDoItem /> line to connect to the data from the initial state.
 - In <ToDoItem /> component, created a checkbox. Hooked the checkbox and the hard-coded text to isCompleted and description, so that the data in the initial state is now showing.
 
-## Checkpoint 2751
+## Checkpoint 2752 (part 1)
 In Progress.
 - Created event function toggleComplete() and gave it to <ToDo /> entry as a prop.
 - Added onChange event listener to <ToDo /> component
@@ -20,3 +20,8 @@ In Progress.
 - Updated state by making a copy of todosArray and individualized tasks using their index. Ternary operator switches isCompleted now. Then the state is set to the new value of isCompleted.
 
 PUSH!
+
+## Checkpoint 2752 (part 2)
+- Added text/submit form.
+- Created handleSubmit() and handleChange()
+- Added ability to submit new ToDos.
